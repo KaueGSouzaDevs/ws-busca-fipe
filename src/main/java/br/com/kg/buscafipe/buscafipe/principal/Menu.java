@@ -24,13 +24,24 @@ public class Menu {
 
 		System.out.println("\n\n---------------------------------------------------------------------------------------------------");
 		System.out.println("Escolha uma das Opções: ");
-		System.out.println("Carros");
-		System.out.println("Motos");
-		System.out.println("Caminhoes");
+		System.out.println("Carro");
+		System.out.println("Moto");
+		System.out.println("Caminhão");
 		System.out.println("---------------------------------------------------------------------------------------------------");
 
 
-		String tipoVeiculo = leitura.nextLine();
+		String opcao = leitura.nextLine();
+		String tipoVeiculo;
+
+		if (opcao.toLowerCase().contains("carr")) {
+			tipoVeiculo = "carros";
+		} else if (opcao.toLowerCase().contains("oto")) {
+			tipoVeiculo = "motos";
+		} else if (opcao.toLowerCase().contains("aminh")) {
+			tipoVeiculo = "caminhoes";
+		} else {
+			tipoVeiculo = "carros";
+		};
 
 
 		System.out.println("\n\n---------------------------------------------------------------------------------------------------");
