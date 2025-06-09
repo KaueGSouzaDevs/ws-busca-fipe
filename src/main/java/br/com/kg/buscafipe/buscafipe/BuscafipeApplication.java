@@ -16,12 +16,8 @@ public class BuscafipeApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-
-		var nome = "Busca Fipe";
-		
-
 		Menu menu = new Menu();
 		menu.menuPrincipal();
-	}
+	};
 
 }

@@ -71,7 +71,7 @@ public class Menu {
 
 		List<Dados> modelos = new ArrayList<>();
 
-		modeloResponse.dados().stream().filter(modelo -> modelo.nome().contains(modeloDesejado.substring(0, 1).toUpperCase()+modeloDesejado.substring(1))).forEach(modelo -> modelos.add(modelo));
+		modeloResponse.dados().stream().filter(modelo -> modelo.nome().toLowerCase().contains(modeloDesejado.toLowerCase())).forEach(modelo -> modelos.add(modelo));
 
 
 		if (modelos.isEmpty()) {
