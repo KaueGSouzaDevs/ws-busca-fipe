@@ -17,9 +17,9 @@ public class BuscarFipe {
     private ConsumoApi consumoApi = new ConsumoApi();
     private ConverteDados converteDados = new ConverteDados();
 
-    public void obterMarcas() {
+    public void obterMarcas(String tipoVeiculo) {
 
-        String apiUrl = "https://parallelum.com.br/fipe/api/v1/carros/marcas";
+        String apiUrl = "https://parallelum.com.br/fipe/api/v1/" + tipoVeiculo.toLowerCase() + "/marcas";
 
         var json = consumoApi.obterDados(apiUrl);
 
@@ -29,8 +29,8 @@ public class BuscarFipe {
         marcas.stream().sorted(Comparator.comparing(Marca::codigo)).forEach(marca -> System.out.println("Código: " + marca.codigo() + " | Nome: " + marca.nome()));
     };
 
-    public ModeloResponse obterModelos(String marca) {
-        String apiUrl = "https://parallelum.com.br/fipe/api/v1/carros/marcas/" + marca + "/modelos";
+    public ModeloResponse obterModelos(String tipoVeiculo, String marca) {
+        String apiUrl = "https://parallelum.com.br/fipe/api/v1/" + tipoVeiculo.toLowerCase() + "/marcas/" + marca + "/modelos";
 
         var json = consumoApi.obterDados(apiUrl);
 
@@ -41,8 +41,8 @@ public class BuscarFipe {
         return modeloResponse;
     }
 
-    public void obterAnos(String marca, String modelo) {
-        String aiUrlpAnos = "https://parallelum.com.br/fipe/api/v1/carros/marcas/" + marca + "/modelos/" + modelo + "/anos";
+    public void obterAnos(String tipoVeiculo, String marca, String modelo) {
+        String aiUrlpAnos = "https://parallelum.com.br/fipe/api/v1/" + tipoVeiculo.toLowerCase() + "/marcas/" + marca + "/modelos/" + modelo + "/anos";
 
         var jsonAnos = consumoApi.obterDados(aiUrlpAnos);
 
@@ -53,7 +53,7 @@ public class BuscarFipe {
         List<VeiculoResponse> veiculos = new ArrayList<>();
 
         anos.forEach(ano -> {
-            var aiUrlpVeiculo = "https://parallelum.com.br/fipe/api/v1/carros/marcas/" + marca + "/modelos/" + modelo + "/anos/" + ano.codigo();
+            var aiUrlpVeiculo = "https://parallelum.com.br/fipe/api/v1/" + tipoVeiculo.toLowerCase() + "/marcas/" + marca + "/modelos/" + modelo + "/anos/" + ano.codigo();
             var jsonVeiculo = consumoApi.obterDados(aiUrlpVeiculo);
             veiculos.add(converteDados.converteDados(jsonVeiculo, new TypeReference<VeiculoResponse>() {}));
         });

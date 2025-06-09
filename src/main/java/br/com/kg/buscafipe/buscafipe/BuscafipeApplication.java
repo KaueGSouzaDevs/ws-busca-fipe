@@ -4,7 +4,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import br.com.kg.buscafipe.buscafipe.service.Menu;
+import br.com.kg.buscafipe.buscafipe.principal.Menu;
 
 @SpringBootApplication
 public class BuscafipeApplication implements CommandLineRunner {

@@ -1,4 +1,4 @@
-package br.com.kg.buscafipe.buscafipe.service;
+package br.com.kg.buscafipe.buscafipe.principal;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 import br.com.kg.buscafipe.buscafipe.model.modelos.Modelo;
 import br.com.kg.buscafipe.buscafipe.model.modelosResponse.ModeloResponse;
+import br.com.kg.buscafipe.buscafipe.service.BuscarFipe;
 
 public class Menu {
     
@@ -16,11 +17,26 @@ public class Menu {
 
 		Scanner leitura = new Scanner(System.in);
 
+
+		System.out.println("\n\n---------------------------------------------------------------------------------------------------");
+		System.out.println("Bem vindo ao Busca Fipe!");
+		System.out.println("---------------------------------------------------------------------------------------------------");
+
+		System.out.println("\n\n---------------------------------------------------------------------------------------------------");
+		System.out.println("Escolha uma das Opções: ");
+		System.out.println("Carros");
+		System.out.println("Motos");
+		System.out.println("Caminhoes");
+		System.out.println("---------------------------------------------------------------------------------------------------");
+
+
+		String tipoVeiculo = leitura.nextLine();
+
+
 		System.out.println("\n\n---------------------------------------------------------------------------------------------------");
 		System.out.println("Buscando marcas...");
 		System.out.println("---------------------------------------------------------------------------------------------------");
-
-		buscarFipe.obterMarcas();
+		buscarFipe.obterMarcas(tipoVeiculo);
 
 		System.out.println("\n\n---------------------------------------------------------------------------------------------------");
 		System.out.println("Digite o código da marca desejada: ");
@@ -32,7 +48,7 @@ public class Menu {
 		System.out.println("\n---------------------------------------------------------------------------------------------------");
 		System.out.println("Buscando modelos...");
 		System.out.println("---------------------------------------------------------------------------------------------------");
-		ModeloResponse modeloResponse = buscarFipe.obterModelos(marca);
+		ModeloResponse modeloResponse = buscarFipe.obterModelos(tipoVeiculo, marca);
 
 
 		System.out.println("\n\n---------------------------------------------------------------------------------------------------");
@@ -64,7 +80,7 @@ public class Menu {
 		System.out.println("\n---------------------------------------------------------------------------------------------------");
 		System.out.println("Buscando anos...");
 		System.out.println("---------------------------------------------------------------------------------------------------");
-		buscarFipe.obterAnos(marca, modelo);
+		buscarFipe.obterAnos(tipoVeiculo, marca, modelo);
 
 		leitura.close();
     }
