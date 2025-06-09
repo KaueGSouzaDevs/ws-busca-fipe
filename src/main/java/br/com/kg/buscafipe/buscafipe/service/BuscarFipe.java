@@ -17,9 +17,11 @@ public class BuscarFipe {
     private ConsumoApi consumoApi = new ConsumoApi();
     private ConverteDados converteDados = new ConverteDados();
 
+    private final String URL_BASE = "https://parallelum.com.br/fipe/api/v1/";
+
     public void obterMarcas(String tipoVeiculo) {
 
-        String apiUrl = "https://parallelum.com.br/fipe/api/v1/" + tipoVeiculo.toLowerCase() + "/marcas";
+        String apiUrl = URL_BASE + tipoVeiculo.toLowerCase() + "/marcas";
 
         var json = consumoApi.obterDados(apiUrl);
 
@@ -30,7 +32,7 @@ public class BuscarFipe {
     };
 
     public ModeloResponse obterModelos(String tipoVeiculo, String marca) {
-        String apiUrl = "https://parallelum.com.br/fipe/api/v1/" + tipoVeiculo.toLowerCase() + "/marcas/" + marca + "/modelos";
+        String apiUrl = URL_BASE + tipoVeiculo.toLowerCase() + "/marcas/" + marca + "/modelos";
 
         var json = consumoApi.obterDados(apiUrl);
 
@@ -42,7 +44,7 @@ public class BuscarFipe {
     }
 
     public void obterAnos(String tipoVeiculo, String marca, String modelo) {
-        String aiUrlpAnos = "https://parallelum.com.br/fipe/api/v1/" + tipoVeiculo.toLowerCase() + "/marcas/" + marca + "/modelos/" + modelo + "/anos";
+        String aiUrlpAnos = URL_BASE + tipoVeiculo.toLowerCase() + "/marcas/" + marca + "/modelos/" + modelo + "/anos";
 
         var jsonAnos = consumoApi.obterDados(aiUrlpAnos);
 
@@ -53,7 +55,7 @@ public class BuscarFipe {
         List<VeiculoResponse> veiculos = new ArrayList<>();
 
         anos.forEach(ano -> {
-            var aiUrlpVeiculo = "https://parallelum.com.br/fipe/api/v1/" + tipoVeiculo.toLowerCase() + "/marcas/" + marca + "/modelos/" + modelo + "/anos/" + ano.codigo();
+            var aiUrlpVeiculo = URL_BASE + tipoVeiculo.toLowerCase() + "/marcas/" + marca + "/modelos/" + modelo + "/anos/" + ano.codigo();
             var jsonVeiculo = consumoApi.obterDados(aiUrlpVeiculo);
             veiculos.add(converteDados.converteDados(jsonVeiculo, new TypeReference<VeiculoResponse>() {}));
         });
