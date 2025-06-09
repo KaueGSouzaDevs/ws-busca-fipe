@@ -5,7 +5,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
-import br.com.kg.buscafipe.buscafipe.model.modelos.Modelo;
+import br.com.kg.buscafipe.buscafipe.model.dados.Dados;
 import br.com.kg.buscafipe.buscafipe.model.modelosResponse.ModeloResponse;
 import br.com.kg.buscafipe.buscafipe.service.BuscarFipe;
 
@@ -69,15 +69,15 @@ public class Menu {
 
 		String modeloDesejado = leitura.nextLine();
 
-		List<Modelo> modelos = new ArrayList<>();
+		List<Dados> modelos = new ArrayList<>();
 
-		modeloResponse.modelos().stream().filter(modelo -> modelo.nome().contains(modeloDesejado.substring(0, 1).toUpperCase()+modeloDesejado.substring(1))).forEach(modelo -> modelos.add(modelo));
+		modeloResponse.dados().stream().filter(modelo -> modelo.nome().contains(modeloDesejado.substring(0, 1).toUpperCase()+modeloDesejado.substring(1))).forEach(modelo -> modelos.add(modelo));
 
 
 		if (modelos.isEmpty()) {
 			System.out.println("Modelo não encontrado. Por favor, procurar pelos códigos exibidos anteriormente.");
 		} else {
-			modelos.stream().sorted(Comparator.comparing(Modelo::codigo)).forEach(modelo -> System.out.println("Código: " + modelo.codigo() + " | Nome: " + modelo.nome()));
+			modelos.stream().sorted(Comparator.comparing(Dados::codigo)).forEach(modelo -> System.out.println("Código: " + modelo.codigo() + " | Nome: " + modelo.nome()));
 		}
 
 
